@@ -1,0 +1,32 @@
+<div class="my-department-page">
+  <div class="list-card"></div>
+</div>
+
+<style>
+  .list-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .card {
+    cursor: pointer;
+    width: 350px;
+    height: 380px;
+  }
+
+  .card > img {
+    height: 250px;
+  }
+
+  .card > .detail {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 8px;
+  }
+</style>
+
+@section Scripts {
+  <script src="~/js/department/my-department.js"></script>
+} 

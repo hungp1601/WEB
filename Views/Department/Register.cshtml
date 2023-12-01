@@ -1,0 +1,76 @@
+@model NHNT.Dtos.DepartmentRegisDto;
+@{
+    ViewData["Title"] = "Đăng bài cho thuê phòng";
+}
+
+<div class="row">
+    <div class="col-sm-9 col-md-12 col-lg-8 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+            <div class="card-body p-4 p-sm-5">
+                <h5 class="card-title text-center mb-5 fw-light fs-5">Tạo phòng cho thuê</h5>
+                <div class="row row-space mb-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="Address">Địa Chỉ: </label>
+                            <input id="address" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Tiền phòng: </label>
+                            <input id="price" class="form-control" type="number">
+                            @* <span id="messEmail" class="error-message">Error</span> *@
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-space mb-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">số điện thoại liên hệ: </label>
+                            <input id="phoneNumber" type="text" class="form-control">
+                            <span id="msgPhoneNumber" class="error-message">Error</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Diện tích phòng: </label>
+                            <input id="acreage" type="number" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-space mb-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Deparment Group: </label>
+                            <select id="departmentSelect">
+                                <option value="">--- Select Department ---</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-space mb-3">
+                    <div class="col-6">
+                        <input type="file" name="files" id="files" multiple />
+                    </div>
+                </div>
+
+                
+                <div class="row row-space mb-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Description: </label>
+                            <input id="description" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+            <div class="d-grid">
+                <button id="btnRegister" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Đăng bài</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/department/register.js"></script>
+}

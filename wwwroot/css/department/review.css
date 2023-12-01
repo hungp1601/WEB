@@ -1,0 +1,37 @@
+.department-review-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.left {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.left img {
+  max-width: 100%;
+  height: auto;
+}
+
+.middle {
+  flex: 3;
+  padding: 0 10px;
+}
+
+.right {
+  flex: 1;
+  text-align: right;
+}
+
+.address {
+  word-wrap: break-word;
+}
+
+.detail-image {
+  cursor: pointer;
+}

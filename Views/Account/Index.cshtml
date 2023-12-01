@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+@section stylesheet {
+    <link rel="stylesheet" href="~/css/login/index.css" />
+}
+
+<div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+            <div class="card-body p-4 p-sm-5">
+                <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
+                <div class="form-floating mb-3">
+                    <label for="">Tài khoản:</label>
+                    <input id="username" name="username" type="text" class="form-control" placeholder="username">
+                    <span id="valid-username" class="error-message">Error</span>
+                </div>
+                <div class="form-floating mb-3">
+                    <label for="floatingPassword">Mật khẩu:</label>
+                    <input id="password" name="password" type="password" class="form-control"  placeholder="password">
+                    <span id="valid-password" class="error-message">Error</span>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                    <label class="form-check-label" for="rememberPasswordCheck">
+                        Nhớ đăng nhập
+                    </label>
+                </div>
+                <div class="d-grid">
+                    <button id="btn-submit" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/login/index.js"></script>
+}

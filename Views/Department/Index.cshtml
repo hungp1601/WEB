@@ -1,0 +1,105 @@
+<div class="department-index">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Tìm kiếm phòng trọ" id="input-seacrh">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" id="btn-seacrh" onclick="handleSearch()">Tìm kiếm</button>
+    </div>
+  </div>
+
+  <div style="display: flex; align-items: center; justify-content: center;">
+    <div class="list-card">
+          @* <div class="card"> <img
+      src="data:image/jpeg;base64,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"
+      alt="" > <div class="detail"> <span>Địa chỉ: </span> <span>Diện tích:
+      m2</span> <span>Giá phòng trọ</span> <span>Thời gian đăng</span> </div>
+      </div> *@
+    </div>
+  </div>
+
+  <nav class="pagination">
+    <button class="pagination-button" id="prev-button" title="Previous page" aria-label="Previous page">
+      &lt;
+    </button>
+    
+    <div id="pagination-numbers">
+    </div>
+    
+    <button class="pagination-button" id="next-button" title="Next page" aria-label="Next page">
+      &gt;
+    </button>
+  </nav>
+</div>
+
+@section Scripts {
+    <script src="~/js/department/index.js"></script>
+}
+
+<style>
+  .department-index {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .list-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .card {
+    width: 350px;
+    height: 380px;
+    cursor: pointer;
+  }
+
+  .card > img {
+    height: 250px;
+  }
+
+  .card > .detail {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 8px;
+  }
+
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 8px;
+    width: 100%;
+  }
+
+  .pagination-number,
+  .pagination-button{
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    margin: 0.25rem 0.25rem;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: .2rem;
+    outline: none;
+  }
+
+  .pagination-number:focus,
+  .pagination-button:focus {
+    outline: none;
+  }
+
+  .pagination-number:hover,
+  .pagination-button:not(.disabled):hover {
+    background: #fff;
+  }
+
+  .pagination-number.active {
+    color: #fff;
+    background: #0085b6;
+  }
+</style>
+

@@ -1,0 +1,191 @@
+@{
+  ViewData["Title"] = "Department Detail";
+}
+
+@model Department
+
+@section stylesheet {
+              <link rel="stylesheet" href="~/css/department/detail.css" />
+}
+
+<div>
+  @* <div class="detail-card">
+    <div class="detail-card-header">
+      <h2>Chi tiết phòng trọ</h2>
+      <p>Ngày tạo: <span id="create-date"></span></p>
+    </div>
+    <div class="detail-card-content">
+      <div>
+        <p>Địa chỉ: <span id="address"></span></p>
+        <p>Giá: <span id="price"></span></p>
+        <p>Số điện thoại: <span id="phone-number"></span></p>
+        <p>Diện tích phòng: <span id="room-area"></span></p>
+        <p>Tình trạng: <span id="status"></span></p>
+      </div>
+      <div>
+        <p>Mô tả: <span id="description"></span></p>
+        <p>Vĩ độ: <span id="latitude"></span></p>
+        <p>Kinh độ: <span id="longitude"></span></p>
+        <p>Trạng thái: <span id="availability"></span></p>
+      </div>
+    </div>
+    <div class="detail-card-images" id="image-container"></div>
+  </div> *@
+  <button 
+  id="editButton" 
+  class="btn btn-info" 
+  data-username="@Model.User.Username"
+  data-toggle="modal"
+  data-target="#updateModal"
+  data-acreage="@Model.Acreage"
+  data-price="@Model.Price"
+  data-address="@Model.Address"
+  data-groupId="@Model.Group.Id"
+  data-description="@Model.Description"
+  data-phone="@Model.PhoneNumber"
+  data-isAvailable="@Model.IsAvailable"
+  >Edit</button>
+
+  <div class="container">
+    <div class="card">
+      <div class="container-fliud">
+        <div class="wrapper row">
+          <div class="preview col-md-6">
+            @if (Model != null)
+            {
+              var Images = Model.Images.ToArray();
+                        <div class="preview-pic tab-content">
+                @for (var i = 0; i < Images.Length; i++)
+                {
+                                      <div class='tab-pane @(i == 0 ? "active" : "")' id="pic-@i"><img src="~/images/departments/@Images[i].Path" /></div>
+                }
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs">
+                @for (var i = 0; i < Images.Length; i++)
+                {
+                                      <li class='image-detail @(i == 0 ? "active" : "")'><a data-target="#pic-@i" data-toggle="tab"><img src="~/images/departments/@Images[i].Path" /></a></li>
+                }
+                        </ul>
+            }
+          </div>
+          <div class="details col-md-6">
+            <h3 class="product-title">@Model.Address</h3>
+            <div class="row">
+              <dt class="col-4">Diện tích:</dt>
+              <dd class="col-8" id = "detail-acreage">@Model.Acreage m</dd>
+
+              <dt class="col-4">Giá thuê: </dt>
+              <dd class="col-8" id = "detail-price">@Model.Price vnđ</dd>
+
+              <dt class="col-4">Ngày đăng: </dt>
+              <dd class="col-8">@Model.CreatedAt</dd>
+
+              <dt class="col-4">Trạng thái: </dt>
+              <dd class="col-8" id = "detail-status">@(@Model.IsAvailable.GetValueOrDefault(false) ? "Còn phòng" : "Đã cho thuê")</dd>
+
+              <dt class="col-4">Chủ nhà</dt>
+              <dd class="col-8">@Model.User.FullName</dd>
+
+              <dt class="col-4">Số điện thoại: </dt>
+              <dd class="col-8">@Model.User.Phone</dd>
+
+              <dt class="col-4">Chuyên mục: </dt>
+              <dd class="col-8" id = "detail-group">@Model.Group.Name</dd>
+            </div>
+
+            <p class="product-description" id = "detailDescription">@Model.Description</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="similar-items">
+      <h2>Các phòng liên quan</h2>
+      <div id="items-container" class="items-container">
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div
+  class="modal fade"
+  id="updateModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="updateModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateModalLabel">Cập nhật</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h5 class="card-title text-center mb-5 fw-light fs-5">Cập nhật thông tin phòng</h5>
+        <div class="form-floating">
+            <label class="Address">Địa Chỉ: </label>
+            <input id="address" class="form-control" type="text">
+        </div>
+        <div class="form-floating">
+            <label class="floatingInput">Tiền phòng: </label>
+            <input id="price" class="form-control" type="number">
+          @* <span id="messEmail" class="error-message">Error</span> *@
+        </div>
+        <div class="form-floating">
+            <label class="floatingInput">Trạng thái: </label><br>
+            <select class = "form-floating custom-select-box" id="departmentAvaliable">
+                <option value="1">Còn phòng</option>
+                <option value="0">Hết phòng</option>
+            </select>
+        </div>
+        <div class="form-floating">
+            <label class="floatingInput">số điện thoại liên hệ: </label>
+            <input id="phoneNumber" type="text" class="form-control">
+            <span id="msgPhoneNumber" class="error-message">Error</span>
+        </div>
+        <div class="form-floating">
+            <label class="floatingInput">Diện tích phòng: </label>
+            <input id="acreage" type="number" class="form-control">
+        </div>
+
+        <div class="form-floating">
+            <label class="floatingInput">Deparment Group: </label><br>
+            <select class="form-floating custom-select-box" id="departmentSelect">
+                <option value="">--- Select Department ---</option>
+            </select>
+        </div>
+        <div class="form-floating">
+            <label class="floatingInput">Description: </label>
+            <input id="description" class="form-control" type="text">
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" 
+          class="btn btn-primary"
+          data-departmentId="@Model.Id"
+          onclick="updateDepartment(@Model.Id)" >Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  @section Scripts {
+              <script src="~/js/department/detail.js"></script>
+}

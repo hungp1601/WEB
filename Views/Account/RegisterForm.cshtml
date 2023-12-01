@@ -1,0 +1,95 @@
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+@section stylesheet {
+    <link rel="stylesheet" href="~/css/login/register.css" />
+}
+
+<div class="row">
+    <div class="col-sm-9 col-md-12 col-lg-8 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+            <div class="card-body p-4 p-sm-5">
+                <h5 class="card-title text-center mb-5 fw-light fs-5">Register</h5>
+                <div class="row row-space mb-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Tên đăng nhập: </label>
+                            <input id="username" class="form-control" type="text">
+                            <span id="messUsername" class="error-message">Error</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Email: </label>
+                            <input id="email" class="form-control" type="text">
+                            <span id="messEmail" class="error-message">Error</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-space mb-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Mật khẩu: </label>
+                            <input id="password" type="password" class="form-control">
+                            <span id="messPassword" class="error-message">Error</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Nhập lại mật khẩu: </label>
+                            <input id="rePassword" type="password" class="form-control">
+                            <span id="messRePassword" class="error-message">Error</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-space mb-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Họ và tên: </label>
+                            <input id="fullName" class="form-control" type="text">
+                            <span id="messFullName" class="error-message">Error</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Ngày sinh: </label>
+                            <input id="birthday" class="form-control" type="date">
+                            <span id="messBirthday" class="error-message">Error</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-space mb-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Giới tính: </label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select id="gender" class="form-control">
+                                    @* <option disabled="disabled" selected="selected">Choose option</option> *@
+                                    <option value="2">Khác</option>
+                                    <option value="0">Nữ</option>
+                                    <option value="1">Nam</option>
+                                </select>
+                                @* <div class="select-dropdown"></div> *@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <label class="floatingInput">Số điện thoại: </label>
+                            <input id="phone" class="form-control" type="text">
+                            <span id="messPhone" class="error-message">Error</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <button id="btnRegister" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Đăng ký</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/login/register.js"></script>
+}
