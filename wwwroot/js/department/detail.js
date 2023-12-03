@@ -225,6 +225,27 @@ function updateDepartment(id) {
   });
 }
 
+
+function bookDepartment (id) {
+  console.log(id, 123)
+  const data = {
+    isAvailable: false,
+  };
+  CustomRequest.postForm({
+    url: "https://localhost:5001/Department/Update/" + id,
+    addToken: true,
+    data: data,
+    callback: (response) => {
+      ToastMessage.show({
+        type: "success",
+        title: "Thành công!",
+      });
+      window.location.href = "https://localhost:5001/Department/Detail/" + id;
+    },
+  });
+}
+
+
 const validPhone = (value, mess) => {
   if (value === "") {
     mess.textContent = "Vui lòng nhập số điện thoại của bạn";

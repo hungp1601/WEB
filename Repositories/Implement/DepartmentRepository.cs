@@ -78,7 +78,7 @@ namespace NHNT.Repositories.Implement
 
             if (dto.Status != null)
             {
-                query = query.Where(d => d.Status.Equals(dto.Status) && d.Address.Contains(search));
+                query = query.Where(d => d.Status.Equals(dto.Status) && d.Address.Contains(search) && d.IsAvailable.Equals(true));
             }
             else
             {

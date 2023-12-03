@@ -46,6 +46,12 @@
   data-isAvailable="@Model.IsAvailable"
   >Edit</button>
 
+@if(@Model.IsAvailable == true) {
+ <button type="button" 
+    class="btn btn-primary"
+    onclick="bookDepartment(@Model.Id)" >đặt phòng</button> 
+}
+
   <div class="container">
     <div class="card">
       <div class="container-fliud">
@@ -87,10 +93,12 @@
               <dd class="col-8">@Model.User.FullName</dd>
 
               <dt class="col-4">Số điện thoại: </dt>
-              <dd class="col-8">@Model.User.Phone</dd>
+              <dd class="col-8">@Model.PhoneNumber</dd>
 
               <dt class="col-4">Chuyên mục: </dt>
               <dd class="col-8" id = "detail-group">@Model.Group.Name</dd>
+
+             
             </div>
 
             <p class="product-description" id = "detailDescription">@Model.Description</p>
@@ -133,7 +141,6 @@
         </button>
       </div>
       <div class="modal-body">
-
         <h5 class="card-title text-center mb-5 fw-light fs-5">Cập nhật thông tin phòng</h5>
         <div class="form-floating">
             <label class="Address">Địa Chỉ: </label>
@@ -160,7 +167,6 @@
             <label class="floatingInput">Diện tích phòng: </label>
             <input id="acreage" type="number" class="form-control">
         </div>
-
         <div class="form-floating">
             <label class="floatingInput">Deparment Group: </label><br>
             <select class="form-floating custom-select-box" id="departmentSelect">
@@ -171,6 +177,7 @@
             <label class="floatingInput">Description: </label>
             <input id="description" class="form-control" type="text">
         </div>
+      </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -186,6 +193,6 @@
 </div>
 
 
-  @section Scripts {
-              <script src="~/js/department/detail.js"></script>
+@section Scripts {
+  <script src="~/js/department/detail.js"></script>
 }
