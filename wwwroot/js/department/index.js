@@ -85,9 +85,12 @@ function formatDate(dateString) {
   return date.toLocaleDateString("vi-VN");
 }
 
-const fetchDepartments = async (page = 1, limit = 9, search = "") => {
+const fetchDepartments = async (page = 1, limit = 9, search = "", start_date = null, end_date = null) => {
   let url = `/Department/ListDepartment?page=${page}&limit=${limit}`;
   if (search) url += `&search=${search}`;
+
+  if (start_date) url += `&start_date=${start_date}`;
+  if (end_date) url += `&end_date=${end_date}`;
 
   await CustomRequest.get({
     url,
@@ -137,16 +140,24 @@ const handleSearch = () => {
   fetchDepartments(1, 9, search);
 };
 
-document
-  .getElementById("toggleSelectionBtn")
-  .addEventListener("click", function () {
-    const components = document.querySelectorAll(".list-card .card");
-    const isSelected = !components[0].classList.contains("selected");
-    for (const component of components) {
-      if (isSelected) {
-        component.classList.add("selected");
-      } else {
-        component.classList.remove("selected");
-      }
-    }
-  });
+function handleSearchDate () {
+  let start_date = document.querySelector("#start_date").value;
+  let end_date = document.querySelector("#end_date").value;
+  console.log(start_date, end_date)
+
+  fetchDepartments(1, 9, "", start_date, end_date);
+};
+
+// document
+//   .getElementById("toggleSelectionBtn")
+//   .addEventListener("click", function () {
+//     const components = document.querySelectorAll(".list-card .card");
+//     const isSelected = !components[0].classList.contains("selected");
+//     for (const component of components) {
+//       if (isSelected) {
+//         component.classList.add("selected");
+//       } else {
+//         component.classList.remove("selected");
+//       }
+//     }
+//   });

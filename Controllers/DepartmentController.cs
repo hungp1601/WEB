@@ -68,7 +68,7 @@ namespace NHNT.Controllers
         {
             if (search == null) search = "";
             DepartmentDto query = new DepartmentDto();
-            return Ok(_departmentService.List(page, limit, search, query));
+            return Ok(_departmentService.List(page, limit, search, query, default(DateTime), default(DateTime)));
         }
 
         [HttpGet("[controller]/[action]")]
@@ -92,11 +92,11 @@ namespace NHNT.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListDepartment(int page, int limit, string search)
+        public IActionResult ListDepartment(int page, int limit, string search, DateTime start_date = default(DateTime), DateTime end_date = default(DateTime))
         {
             if (search == null) search = "";
             DepartmentDto query = new DepartmentDto(DepartmentStatus.ACCEPTED);
-            var departments = _departmentService.List(page, limit, search, query);
+            var departments = _departmentService.List(page, limit, search, query, start_date, end_date);
             var total = _departmentService.Count();
 
             ListDepartmentDto result = new ListDepartmentDto(departments, total);
@@ -123,7 +123,7 @@ namespace NHNT.Controllers
         [HttpPost("[controller]/[action]")]
         public IActionResult AdminSearchReview([FromForm] int pageIndex, [FromForm] int pageSize, [FromForm] DepartmentDto dto)
         {
-            return Ok(_departmentService.Search(pageIndex, pageSize, dto));
+            return Ok(_departmentService.Search(pageIndex, pageSize, dto, default(DateTime), default(DateTime)));
         }
 
         [Authorize(RoleConfig.ADMIN)]

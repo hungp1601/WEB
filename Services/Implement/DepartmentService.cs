@@ -27,9 +27,9 @@ namespace NHNT.Services.Implement
         }
 
 
-        public DepartmentDto[] List(int page, int limit, string search, DepartmentDto query)
+        public DepartmentDto[] List(int page, int limit, string search, DepartmentDto query, DateTime start_date, DateTime end_date)
         {
-            var departments = _departmentRepository.List(page, limit, search, query);
+            var departments = _departmentRepository.List(page, limit, search, query, start_date, end_date);
             DepartmentDto[] result = Array.ConvertAll(array: departments, new Converter<Department, DepartmentDto>(ConvertDepartmentDto));
             // Console.WriteLine(JsonSerializer.Serialize(result));
             return result;
@@ -116,7 +116,7 @@ namespace NHNT.Services.Implement
             throw new NotImplementedException();
         }
 
-        public List<DepartmentDto> Search(int pageIndex, int pageSize, DepartmentDto dto)
+        public List<DepartmentDto> Search(int pageIndex, int pageSize, DepartmentDto dto, DateTime start_date, DateTime end_date)
         {
             List<Department> departments = _departmentRepository.Search(pageIndex, pageSize, dto);
             return departments.Select(d => new DepartmentDto(d)).ToList();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -62,7 +63,7 @@ namespace NHNT.Repositories.Implement
             _context.SaveChanges();
         }
 
-        public Department[] List(int page, int limit, string search, DepartmentDto dto)
+        public Department[] List(int page, int limit, string search, DepartmentDto dto, DateTime start_date, DateTime end_date)
         {
             if (page <= 0)
                 page = 1;
@@ -78,12 +79,17 @@ namespace NHNT.Repositories.Implement
 
             if (dto.Status != null)
             {
-                query = query.Where(d => d.Status.Equals(dto.Status) && d.Address.Contains(search) && d.IsAvailable.Equals(true));
+                query = query.Where(d => d.Status.Equals(dto.Status) && d.Address.Contains(search)
+                 &&
+                 (start_date == default(DateTime) || d.CreatedAt >= start_date) &&
+                (end_date == default(DateTime) || d.CreatedAt <= end_date));
             }
             else
             {
                 query = query.Where(d => d.Address.Contains(search));
             }
+
+
 
             var departments = query
                 .Include(d => d.User)

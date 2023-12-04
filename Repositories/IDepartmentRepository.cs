@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using NHNT.Dtos;
 using NHNT.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace NHNT.Repositories
 {
@@ -11,7 +15,7 @@ namespace NHNT.Repositories
         void Update(Department department);
         void Delete(int id);
         // pagination department
-        Department[] List(int page, int limit, string search, DepartmentDto query);
+        Department[] List(int page, int limit, string search, DepartmentDto query, DateTime start_date, DateTime end_date);
         Department[] FindByUserId(int userId);
         int Count();
         List<Department> Search(int pageIndex, int pageSize, DepartmentDto dto);
