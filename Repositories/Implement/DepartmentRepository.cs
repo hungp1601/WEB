@@ -80,13 +80,13 @@ namespace NHNT.Repositories.Implement
             if (dto.Status != null)
             {
                 query = query.Where(d => d.Status.Equals(dto.Status) && d.Address.Contains(search)
-                 &&
+                 && d.IsAvailable.Equals(true) &&
                  (start_date == default(DateTime) || d.CreatedAt >= start_date) &&
                 (end_date == default(DateTime) || d.CreatedAt <= end_date));
             }
             else
             {
-                query = query.Where(d => d.Address.Contains(search));
+                query = query.Where(d => d.Address.Contains(search) && d.IsAvailable.Equals(true));
             }
 
 
